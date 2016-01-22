@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h1>Images</h1>
+<div id="output">
+
+</div>
+
+
+
+<script src="js/jquery.min.js" type="application/javascript"></script>
+<script src="js/handlebars.min.js" type="application/javascript"></script>
+<script src="js/underscore-min.js" type="application/javascript"></script>
+<script src="js/application.js" type="application/javascript"></script>
+<script id="imageListTemplate" type="text/x-handlebars-template">
+    <table class="entries">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Thumbnail</th>
+            </tr>
+        </thead>
+        {{#each items}}
+        <tr>
+            <td>
+                <h1>{{this.title}}</h1>
+            </td>
+            <td>
+                <img src="{{this.thumbnailUrl}}">
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+</script>
+<script type="application/javascript">
+    $(document).on('ready', function(){
+       app.init('http://jsonplaceholder.typicode.com/photos', 'nihil');
+    });
+</script>
+</body>
+</html>
