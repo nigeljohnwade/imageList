@@ -1,10 +1,21 @@
-function init(){
-    retrieveImages();
+window.app = {};
+
+app.init = function(url, criteria){
+    app.retrieveImages(url, criteria);
 }
-function retrieveImages(url){
-    $.ajax('http://jsonplaceholder.typicode.com/photos', {
+app.retrieveImages = function(url, criteria){
+    $.ajax(url, {
         success: function(data, status, xhr){
-            console.log(data);
+            var displayData = app.filterData(criteria, data);
+            console.log(displayData);
         }
     });
+}
+
+app.filterData = function(criteria, collection){
+    var returnArray = [];
+    returnArray = _.filter(collection, function(datum){
+        return datum.title.indexOf(criteria) > -1;
+    });
+    return returnArray;
 }
