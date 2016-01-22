@@ -7,7 +7,8 @@ app.retrieveImages = function(url, criteria){
     $.ajax(url, {
         success: function(data, status, xhr){
             var displayData = app.filterData(criteria, data);
-            console.log(displayData);
+            var templateArray = {items: displayData};
+            $('#output').html(app.template('#imageListTemplate', templateArray));
         }
     });
 }
@@ -18,4 +19,12 @@ app.filterData = function(criteria, collection){
         return datum.title.indexOf(criteria) > -1;
     });
     return returnArray;
+}
+
+app.template = function(templateId, context){
+    var source = $(templateId).html();
+    var template = Handlebars.compile(source);
+    var returnHtml = template(context);
+    console.log(returnHtml);
+    return returnHtml;
 }
