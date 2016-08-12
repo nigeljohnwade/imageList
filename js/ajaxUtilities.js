@@ -1,4 +1,4 @@
-var ajaxUtilities = {
+define({
     httpRequests: [],
     create: function(uri, callbacks, method, data){
         var _ref = this.httpRequests.push(new XMLHttpRequest());
@@ -45,7 +45,7 @@ var ajaxUtilities = {
         this.httpRequests[_ref - 1].open(method, uri, true);
         this.httpRequests[_ref - 1].send(data);
     }
-}
+});
 
 //0	UNSENT	Client has been created. open() not called yet.
 //1	OPENED	open() has been called.

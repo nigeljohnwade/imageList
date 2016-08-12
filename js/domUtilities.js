@@ -1,4 +1,4 @@
-var domUtilities = {
+define({
     getElementArray: function(selector, context){
         var returnArray = [];
         var querySelection;
@@ -37,4 +37,4 @@ var domUtilities = {
                 console.dir(error);
         }
     }
-};
+});

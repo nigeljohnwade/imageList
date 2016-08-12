@@ -13,13 +13,8 @@
     
     </div>
 
-
-<script src="js/ajaxUtilities.js" type="application/javascript"></script>
-<script src="js/domUtilities.js" type="application/javascript"></script>
-<script src="js/handlebars.min.js" type="application/javascript"></script>
 <script src="js/underscore-min.js" type="application/javascript"></script>
-<script src="js/application.js" type="application/javascript"></script>
-<script src="config.js" type="application/javascript"></script>
+<script data-main="js/application" src="js/require.js"></script>
 <script id="imageListTemplate" type="text/x-handlebars-template">
     <table class="entries">
         <thead>
@@ -41,13 +36,7 @@
     </table>
 </script>
 <script type="application/javascript">
-    var flickrUrl = {
-        base: 'https://api.flickr.com/services/rest/?format=json&nojsoncallback=1',
-        api_key: '&api_key=' + flickrApiKey
-    }
-    document.addEventListener('DOMContentLoaded', function(){
-       app.init(flickrUrl.base + flickrUrl.api_key + '&method=flickr.photos.search', '#searchCriteria', 'form');
-    });
+
 </script>
 </body>
 </html>
