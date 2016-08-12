@@ -4,13 +4,16 @@ app.init = function(url, criteria){
     app.retrieveImages(url, criteria);
 }
 app.retrieveImages = function(url, criteria){
-    $.ajax(url, {
-        success: function(data, status, xhr){
+    ajaxUtilities.create(url, {
+        done: function(xhr, data){
             var displayData = app.filterData(criteria, data);
             var templateArray = {items: displayData};
-            $('#output').html(app.template('#imageListTemplate', templateArray));
+            domUtilities.getElement('#output').innerHTML = app.template('#imageListTemplate', templateArray);
         }
-    });
+        },
+        'GET',
+        criteria
+    );
 }
 
 app.filterData = function(criteria, collection){
@@ -22,7 +25,7 @@ app.filterData = function(criteria, collection){
 }
 
 app.template = function(templateId, context){
-    var source = $(templateId).html();
+    var source = domUtilities.getElement(templateId).innerHTML;
     var template = Handlebars.compile(source);
     var returnHtml = template(context);
     console.log(returnHtml);

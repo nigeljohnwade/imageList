@@ -11,7 +11,8 @@
 
 
 
-<script src="js/jquery.min.js" type="application/javascript"></script>
+<script src="js/ajaxUtilities.js" type="application/javascript"></script>
+<script src="js/domUtilities.js" type="application/javascript"></script>
 <script src="js/handlebars.min.js" type="application/javascript"></script>
 <script src="js/underscore-min.js" type="application/javascript"></script>
 <script src="js/application.js" type="application/javascript"></script>
@@ -36,7 +37,7 @@
     </table>
 </script>
 <script type="application/javascript">
-    $(document).on('ready', function(){
+    document.addEventListener('DOMContentLoaded', function(){
        app.init('http://jsonplaceholder.typicode.com/photos', 'nihil');
     });
 </script>
