@@ -1,13 +1,22 @@
 window.app = {};
 
-app.init = function(url, criteria){
-    app.retrieveImages(url, criteria);
+app.init = function(url, inputRef, submitRef){
+    domUtilities.getElement(submitRef).addEventListener('submit', function(event){
+        var _criteria = domUtilities.getElement(inputRef).value;
+        url = url + '&text=' + _criteria;
+        app.retrieveImages(url, _criteria);
+        event && event.preventDefault();
+    });
+    app.retrieveImages(url + '&text=cats');
 }
 app.retrieveImages = function(url, criteria){
     ajaxUtilities.create(url, {
         done: function(xhr, data){
-            var displayData = app.filterData(criteria, data);
-            var templateArray = {items: displayData};
+            var _data;
+            _data = _.map(data.photos.photo, function(elem, index, array){
+                return {title: elem.title, thumbnailUrl: `https://farm${elem.farm}.staticflickr.com/${elem.server}/${elem.id}_${elem.secret}_t.jpg`}
+            });
+            var templateArray = {items: _data};
             domUtilities.getElement('#output').innerHTML = app.template('#imageListTemplate', templateArray);
         }
         },
@@ -16,18 +25,9 @@ app.retrieveImages = function(url, criteria){
     );
 }
 
-app.filterData = function(criteria, collection){
-    var returnArray = [];
-    returnArray = _.filter(collection, function(datum){
-        return datum.title.indexOf(criteria) > -1;
-    });
-    return returnArray;
-}
-
 app.template = function(templateId, context){
     var source = domUtilities.getElement(templateId).innerHTML;
     var template = Handlebars.compile(source);
     var returnHtml = template(context);
-    console.log(returnHtml);
     return returnHtml;
 }
