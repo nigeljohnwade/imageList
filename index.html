@@ -16,27 +16,14 @@
 <script src="js/underscore-min.js" type="application/javascript"></script>
 <script data-main="js/application" src="js/require.js"></script>
 <script id="imageListTemplate" type="text/x-handlebars-template">
-    <table class="entries">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Thumbnail</th>
-            </tr>
-        </thead>
+    <ul class="entries">
         {{#each items}}
-        <tr>
-            <td>
-                <h1>{{this.title}}</h1>
-            </td>
-            <td>
-                <img src="{{this.thumbnailUrl}}">
-            </td>
-        </tr>
+        <li>
+            <p class='title'>{{this.title}}</p>
+            <img class="thumbnail" src="{{this.thumbnailUrl}}">
+        </li>
         {{/each}}
     </table>
-</script>
-<script type="application/javascript">
-
 </script>
 </body>
 </html>
