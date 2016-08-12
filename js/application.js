@@ -1,4 +1,4 @@
-requirejs(["../config", "ajaxUtilities", "domUtilities", "handlebars.min"], function(config, ajaxUtilities, domUtilities, Handlebars){
+requirejs(["../config", "ajaxUtilities", "domUtilities", "handlebars.min", "underscore"], function(config, ajaxUtilities, domUtilities, Handlebars, _){
 
     window.app = {};
 
